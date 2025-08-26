@@ -151,13 +151,126 @@ SELECT * FROM EMPLOYEE; -- EMP_NAME, JOB_CODE
 -- case 2. 연결할 두 컬럼의 이름이 같은 경우(JOB_CODE)
 SELECT
 	   EMP_NAME
-	 , EMPLOYEE.JOB_CODE, JOB.JOB_CODE
+	 , JOB_CODE
+	 , JOB_CODE
+	 , JOB_NAME
+  FROM
+	   EMPLOYEE
+	 , JOB
+ WHERE
+ 	   JOB_CODE = JOB.JOB_CODE;
+
+-- 방법 1. 테이블명을 사용하는 방법
+SELECT
+	   EMP_NAME
+	 , EMPLOYEE.JOB_CODE
+	 , JOB.JOB_CODE
 	 , JOB_NAME
   FROM
 	   EMPLOYEE
 	 , JOB
  WHERE
  	   EMPLOYEE.JOB_CODE = JOB.JOB_CODE;
+
+-- 방법 2. 별칭 사용(각 테이블마다 별칭 부여 가능)
+SELECT
+	   EMP_NAME
+	 , E.JOB_CODE
+	 , J.JOB_CODE
+	 , JOB_NAME
+  FROM
+	   EMPLOYEE E
+	 , JOB J
+ WHERE
+ 	   E.JOB_CODE = J.JOB_CODE;
+-- 위와 같은 방법은 나중에 행이 많아지면 헷갈릴 수가 있다.
+
+
+
+
+/*
+SELECT
+EMP_NAME
+, "사원정보".JOB_CODE E
+, "직급정보".JOB_CODE DE
+, JOB_NAME
+FROM
+EMPLOYEE "사원정보"
+, JOB "직급정보"
+WHERE
+"사원정보".JOB_CODE = "직급정보".JOB_CODE;
+*/
+
+-------------------------------------- 오라클 구문 끝!!!!!!!!! -------------------------------------------------------------
+
+--> 이제 ANSI 구문 들어가보자 !
+-- FROM절에 기준 테이블을 하나 기술한 뒤
+-- 그 뒤에 JOIN절에 같이 조회하고자 하는 테이블을 기술(매칭시킬 컬럼에 대한 조건도 기술)
+-- USING / ON 구문 둘 중에 하나를 선택해서 써야해요.
+
+-- EMP_NAME, DEPT_CODE, DEPT_TITLE
+-- 사원명, 부서코드, 부서명
+-- 연결컬럼이 컬럼명이 다름(EMPLOYEE - DEPT_CODE / DEPARTMENT - DEPT_ID)
+-- 위의 경우에는 무조건 ON 구문만 써야한다. (USING은 못씀 안됨 불가능함!!!!!!!!!!!!!!)
+
+SELECT
+	   EMP_NAME
+	 , DEPT_CODE
+	 , DEPT_TITLE
+  FROM
+	   EMPLOYEE
+--INNER (이너조인에서는 이너를 안쓰면 이너조인이 됩니다^~^)
+  JOIN
+	   DEPARTMENT ON (DEPT_CODE = DEPT_ID);
+
+
+
+-- EMP_NAME, JOB_CODE, JOB_NAME
+-- 사원명, 직급코드, 직급명
+-- 연결할 두 컬럼명이 같을 경우(JOB_CODE)
+-- ON 구문이용 ) 애매하다(AMBIGUOUSLY) 발생할 수 있음 어떤 테이블의 컬럼인지 명시
+SELECT
+	   EMP_NAME
+	 , E.JOB_CODE
+	 , JOB_NAME
+  FROM
+	   EMPLOYEE E
+  JOIN
+  	   JOB J ON (E.JOB_CODE = J.JOB_CODE);
+
+-- USING 구문이용 ) 컬럼명이 동일할 경우 사용이 가능하며 동등비교 연산자를 사용하지 기술하지 않음
+SELECT
+	   EMP_NAME
+	 , JOB_CODE
+	 , JOB_NAME
+  FROM 
+	   EMPLOYEE
+  JOIN
+	   JOB USING(JOB_CODE);
+
+-- [참고사항] NATURAL JOIN(자연조인)
+SELECT
+	   EMP_NAME
+	 , JOB_CODE
+	 , JOB_NAME
+  FROM
+	   EMPLOYEE
+NATURAL
+  JOIN
+       JOB;
+-- 두 개의 테이블을 조언하는데 운 좋게도 두 개의 테이블에 일치하는 컬럼이 딱 하나 있었다.
+-- 잘 사용하지 않습니다. 그냥 이런 게 있다고 알아만 두세요.
+
+	   
+	 
+
+
+
+
+
+
+
+
 
 
 
