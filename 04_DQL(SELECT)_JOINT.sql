@@ -297,6 +297,8 @@ SELECT
  WHERE
  	   JOB_NAME = '대리';
 
+-- EQUAL JOIN / INNER JOIN : 일치하지 않는 행은 애초에 ResultSet에 포함시키지 않음
+
 
 
 
