@@ -261,11 +261,41 @@ NATURAL
 -- 두 개의 테이블을 조언하는데 운 좋게도 두 개의 테이블에 일치하는 컬럼이 딱 하나 있었다.
 -- 잘 사용하지 않습니다. 그냥 이런 게 있다고 알아만 두세요.
 
-	   
-	 
+/*
+ * < Quiz >
+ */
+-- 사원명과 직급명을 같이 조회해주세요. 단 직급명이 대리인 사원들만 조회해주세요.
+
+--> ORACLE 문법
+
+--> ANSI 문법
 
 
+-- ↓ 이것을 오라클에서는 등가조인(EQUAL JOIN)
+-- 1. 오라클 문법
+SELECT
+	   E.EMP_NAME
+	 , J.JOB_NAME
+  FROM
+	   EMPLOYEE E
+	   , JOB J
+ WHERE
+	   E.JOB_CODE = J.JOB_CODE
+   AND
+       JOB_NAME = '대리';
 
+
+-- ↓ 이것을 ANSI에서는 이너조인(INNER JOIN)
+-- 2. ANSI 문법
+SELECT
+	   EMP_NAME
+	 , JOB_NAME
+  FROM
+	   EMPLOYEE E
+  JOIN
+	   JOB J ON (E.JOB_CODE = J.JOB_CODE)
+ WHERE
+ 	   JOB_NAME = '대리';
 
 
 
