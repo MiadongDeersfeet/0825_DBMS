@@ -95,10 +95,12 @@ SELECT
  *		(LEFT OUTER)					| 		오른쪽 외부 조인(RIGHT OUTER JOIN)
  *		(RIGHT OUTER)					| 		전체 외부 조인(FULL OUTER JOIN) -> 오라클에선 X
  * -------------------------------------------------------------------------------
- *자체조인(SELF JOIN)						|
- *비등가조인(NON EQUAL JOIN)				|               교차조인
- *자연조인(NATURAL JOIN)					|			  (CROSS JOIN)
+ *		  카테시안 곱		                |               교차조인
+ *	 (CARTESIAN PRODUCT)		        |             (CROSS JOIN)
  *--------------------------------------------------------------------------------
+ *자체조인(SELF JOIN)
+ *비등가조인(NON EQUAL JOIN)	
+ *자연조인(NATURAL JOIN)	
  */
 
 /*
