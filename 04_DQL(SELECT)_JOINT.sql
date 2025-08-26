@@ -129,11 +129,35 @@ SELECT
 	 , DEPARTMENT
  WHERE
  	   DEPT_CODE = DEPT_ID;
-	   	 
+-- 207개 행 중에서 21행만 일치하더라.
+-- 일치하지 않는 값은 조회에서 제외
+-- DEPT_CODE가 NULL인 사원 2명은 데이터가 조회되지 않는다.
+-- DEPT_ID가 D3, D4, D7인 부서데이터가 조회되지 않는다.
 
 
 
 
+
+
+
+
+
+
+-- 이번에는 전체 사원들의 사원명, 직급코드, 직급명을 한꺼번에 조회하고 싶어요.
+-- 먼저 전체구성을 보아야합니다.
+SELECT * FROM JOB; -- JOB_CODE, JOB_NAME
+SELECT * FROM EMPLOYEE; -- EMP_NAME, JOB_CODE
+
+-- case 2. 연결할 두 컬럼의 이름이 같은 경우(JOB_CODE)
+SELECT
+	   EMP_NAME
+	 , EMPLOYEE.JOB_CODE, JOB.JOB_CODE
+	 , JOB_NAME
+  FROM
+	   EMPLOYEE
+	 , JOB
+ WHERE
+ 	   EMPLOYEE.JOB_CODE = JOB.JOB_CODE;
 
 
 
