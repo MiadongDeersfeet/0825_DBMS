@@ -14,7 +14,7 @@ INSERT
   INTO 
        TB_TOURIST
 VALUES (
-       SEQ_TOURIST_ID.NEXTVALs
+       SEQ_TOURIST_ID.NEXTVAL
      , '김윤기대표님'
      , '961104-1234567'
      , '010-3153-1234'
