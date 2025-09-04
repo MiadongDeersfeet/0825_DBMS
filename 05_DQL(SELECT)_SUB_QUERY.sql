@@ -624,7 +624,7 @@ SELECT
 	   EMPLOYEE
  ORDER
 	BY
-	   SALARY DESC
+	   SALARY DESC NULLS LAST
 OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY;	   
 -- 앞 쪽에 몇 개의 행(0)을 건너뛸 건지
 -- 건너뛴 다음 몇 개(5)행을 반환받을 건지
